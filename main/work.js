@@ -11,6 +11,7 @@ const timerElement = document.createElement('h3');
 document.body.appendChild(mathProblemElement);
 document.body.appendChild(answerInput);
 document.body.appendChild(timerElement);
+answerInput.type="number";
 mathProblemElement.classList.add('hidden');
 answerInput.classList.add('hidden');
 timerElement.classList.add('hidden');
@@ -94,58 +95,6 @@ function handleAnswer(event) {
       explode_se.autoplay="true";
       document.body.appendChild(explode_se);
       localStorage.setItem("green", "true");
-    } else if (userInput === "Konami code") {
-      clearInterval(window.daynightcycle);
-      document.getElementById('daynight-css').textContent = `
-      @keyframes backgroundSwitch {
-        0% { background: url("/assets/RGB.gif"); }
-        14% { background: url("/assets/Seisure.gif"); }
-        28% { background: url("/assets/Trippy.gif"); }
-        42% { background: url("/assets/water.gif"); }
-        57% { background: url("/assets/what.gif"); }
-        71% { background: url("/assets/wow.gif"); }
-        85% { background: url("/assets/I feel like I am on a... Trip - merg.gif"); }
-        100% { background: url("/assets/Orange.gif"); }
-      }
-
-      body {
-        animation: backgroundSwitch 30s infinite;
-        background-color: black;
-      }
-      `;
-      try {window.sleepthecat();} catch {}
-      try {stopHungerDecrease();} catch {}
-      try {stopHappinessDecrease();} catch {}
-      document.getElementById('hunger').textContent = "BRUH";
-      document.getElementById('money-text').textContent = "DEATH!!";
-      document.getElementById('happy-text').textContent = "CRAZY";
-      document.getElementById('sleepy-text').textContent="Time itself is ending!!!";
-      document.getElementById('buttons-container').remove();
-      document.getElementById('option-buttons').remove();
-      try {localStorage.setItem("virtualPetSave", '{"money":666,"happiness":666,"hunger":666,"isDayTime":false, "secretFlag":true}');} catch {}
-      endChallenge(); 
-      if (document.getElementById('mus_btn_mus')) {document.getElementById('mus_btn_mus').remove();}
-      const trip_music = document.createElement('audio');
-      trip_music.autoplay='true';
-      trip_music.loop="true";
-      trip_music.src='/assets/Crazy.mp3';
-      document.body.appendChild(trip_music); 
-      clearInterval(window.lifebarcolorinterval);
-      clearInterval(window.muscheck);     
-      window.crazy = async function() {
-        document.getElementById('hunger').classList.add('alive');
-        document.getElementById('hunger').classList.add('death');
-        document.getElementById('happy-text').classList.add('sad');
-        await worksleep(1);
-        document.getElementById('hunger').classList.remove('death');
-        document.getElementById('happy-text').classList.remove('sad');
-        document.getElementById('hunger').classList.remove('alive');
-        await worksleep(1);
-      }
-      setInterval(() => window.crazy(), 600);
-      const reminder = document.createElement('h1');
-      reminder.textContent="Oh yeah! When you are ready to face me just reload this save!";
-      document.body.appendChild(reminder);
     }
     else if (userInput === "FREE MONEY") {
       money = -9999;
