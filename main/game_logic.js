@@ -23,12 +23,16 @@ function initDayNightCycle() {
 function switchDayNight() {
     if (isDayTime) {
         isDayTime = false;
-        window.idle()
     } else {
         isDayTime = true;
-        window.idle()
     }
     updateBackground(); 
+    // Why does it not register when the game loads T-T
+    try {
+        window.cat.idle();
+    } catch(e) {
+        console.log("Cry about it (this is expected at game load)")
+    }
 }
 
 
@@ -38,7 +42,10 @@ document.body.appendChild(daynight_css);
 
 
 function updateBackground() {
-    const backgroundStyle = document.getElementById("daynight-css");
+    if(document.getElementById("daynight-css") !== null) {
+        const backgroundStyle = document.getElementById("daynight-css");
+        backgroundStyle.remove();
+    }
     let daycss = `
     body {
         background: linear-gradient(to top, #87CEFA, #FFD700);
@@ -52,10 +59,11 @@ function updateBackground() {
     }`;
     
     if (getIsDayTime()) {
-        backgroundStyle.textContent = daycss;
+        document.body.classList.add("daytime");
+        document.body.classList.remove("nighttime");
     } else {
-        
-        backgroundStyle.textContent = nightcss;
+        document.body.classList.add("nighttime");
+        document.body.classList.remove("daytime");
     }
     try {idle();} catch {}
     try {updateMusic();} catch {}

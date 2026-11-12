@@ -1,71 +1,71 @@
+class Cat {
+  constructor(imgElement, name = "cat") {
+    this.imgElement = imgElement;
+    this.name = name;
+    this.currentInterval = null;
 
-const imgElement = document.getElementById("img");
-currentcat = "cat"
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("green") === "true") {
+        this.imgElement.style.filter =
+          "grayscale(100%) sepia(1) hue-rotate(80deg) saturate(100)";
+      }
+    });
+  }
 
-let currentInterval;
+  setCat(imgsrc) {
+    this.imgElement.src = imgsrc;
+  }
 
+  sleep() {
+    this.setCat(`${this.name}/sleeping.gif`);
+  }
 
-function sleep() {
-    setCat(currentcat + "/sleeping.gif");
-}
+  stare() {
+    this.setCat(`${this.name}/stare.gif`);
+  }
 
+  scratch() {
+    this.setCat(`${this.name}/scratch.gif`);
+  }
 
-function stare() {
-    setCat(currentcat + "/stare.gif");
-}
+  idleDay() {
+    this.stare();
+  }
 
+  idleNight() {
+    this.sleep();
+  }
 
-function scratch() {
-    setCat(currentcat + "/scratch.gif");
-}
+  stopAnimation() {
+    this.setCat(`${this.name}/idle.png`);
+  }
 
-
-function idleDay() {
-    setCat(currentcat + "/stare.gif");
-}
-
-
-function idleNight() {
-    sleep();
-}
-
-
-function setCat(imgsrc) {
-    imgElement.src = imgsrc; 
-}
-
-
-function stopAnimation() {
-    setCat(currentcat + "/idle.png");
-}
-
-
-function idle() {
-    if (getIsDayTime()) {
-        idleDay(); 
-    } else {
-        idleNight(); 
-    }
-}
-
-
-idle();
-
-
-function getIsDayTime() {
+  getIsDayTime() {
     return window.isDayTime;
+  }
+
+  idle() {
+    if (this.getIsDayTime()) {
+      this.idleDay();
+    } else {
+      this.idleNight();
+    }
+  }
+
+  sleepthecat() {
+    this.sleep();
+  }
+
+  hijackcat() {
+    clearInterval(this.currentInterval);
+    this.imgElement.src = "";
+    window.alert(
+      `Please stop toying with my leftover code from a garbage "boss fight" I made a long time ago.`
+    );
+  }
 }
-
-window.sleepthecat = function() {
-    setCat(currentcat + "/sleeping.gif");
-}
-
-
-window.hijackcat = function() {
-    clearInterval(currentInterval);
-    imgElement.src = "";
-    window.alert(`Please stop toying with my leftover code from a garbage "boss fight" I made a long time ago.`);
-}
-
-
-document.addEventListener("DOMContentLoaded", () => { if (localStorage.getItem("green") === "true") { document.getElementById("img").style.filter = "grayscale(100%) sepia(1) hue-rotate(80deg) saturate(100)"; } });
+document.addEventListener("DOMContentLoaded", () => {
+  const imgElement = document.getElementById("img");
+  window.cat = new Cat(imgElement, "cat");
+  window.cat.idle();
+});
