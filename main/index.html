@@ -29,7 +29,16 @@
             <button id="work">WORK</button>
         </div>
         <div id="option-buttons">
-            <!--<button onclick="switchDayNight();">Debug switchDayNight T-T</button>-->
+            <style>
+                .hidden-debug {
+                    display: none;
+                }
+            </style>
+            <div id="debug-btns" class="hidden-debug">
+                <button onclick="switchDayNight();">switchDayNight</button>
+                <button onclick="try {earnMoney(999999);} catch {}">money</button>
+                <button onclick="window.resetAll();">Reset</button>
+            </div>
         </div>
         <script src="the_cat.js" async defer></script>
         <script src="hunger.js"></script>
@@ -39,7 +48,7 @@
         <script src="happiness.js"></script>
         <script src="save-load.js"></script>
         <script>if (localStorage.getItem('virtualPetSave')) {loadGame();}</script><script src="life_counter.js">
-        </script><script>function dual() {const dualscript = document.createElement("script");dualscript.src="/oneko.js";document.body.appendChild(dualscript);}</script>
+        </script>
         <script src="debug.js"></script>
     </body>
 </html>

@@ -58,55 +58,8 @@ function generateMathProblem() {
 function handleAnswer(event) {
   if (event.key === 'Enter') {
     const userInput = answerInput.value; 
-    if (userInput === "dual") {
-      try { dual(); } catch (error) { console.error("dual() function missing or errored:", error); }
-    } else if (userInput === "I am rich!") {
-      const originalText = document.getElementById("sleepy-text").textContent;
-      document.getElementById("sleepy-text").textContent = "Oh noes! We cannot fight rich people. Take money!";
-      setTimeout(() => {
-        document.getElementById("sleepy-text").textContent = originalText;
-      }, 5000); 
-      try { earnMoney(99999999); } catch (error) { console.error("earnMoney() function missing or errored:", error); }
-      score++;
-    } else if (userInput === "I'm poor") {
-      const originalText = document.getElementById("sleepy-text").textContent;
-      document.getElementById("sleepy-text").textContent = "Congratz ur bankrupt now!";
-      setTimeout(() => {
-        document.getElementById("sleepy-text").textContent = originalText;
-      }, 5000); 
-      try { earnMoney(0-money); } catch (error) { console.error("bankrupt() function missing or errored:", error); }
-      score--;
-    } else if (userInput === "Le sleep") {
-      try { sleep(); } catch (error) { console.error("sleep() function missing or errored:", error); }
-      try { if (isDayTime) switchDayNight(); } catch (error) { console.error("switchDayNight() function missing or errored:", error); }
-      score += 2; 
-      try { earnMoney(9999); } catch (error) { console.error("earnMoney() function missing or errored:", error); }
-      try { sleep(); } catch (error) { console.error("sleep() function missing or errored:", error); }
-    } else if (userInput === "KABOOM!"){
-      document.body.replaceWith(document.createElement('body'));
-      const the_style = document.getElementById('normal');
-      the_style.href='explode.css';
-      const explosion = document.createElement('img');
-      explosion.src="/assets/explosion-explode.gif";
-      explosion.id="explode";
-      document.body.appendChild(explosion);
-      const explode_se = document.createElement('audio');
-      explode_se.src="/assets/roblox-explosion-sound.mp3";
-      explode_se.autoplay="true";
-      document.body.appendChild(explode_se);
-      localStorage.setItem("green", "true");
-    }
-    else if (userInput === "FREE MONEY") {
-      money = -9999;
-      updateMoney();
-      localStorage.removeItem('virtualPetSave');
-      document.getElementById("option-buttons").remove();
-      endChallenge();
-      document.getElementById('buttons-container').remove();
-      if (isDayTime === true) {
-        switchDayNight();
-      }
-      clearInterval(window.daynightcycle);
+    if (userInput === "") {
+      console.log("Why do people type nothing T-T")
     }
     else {
       const userAnswer = parseInt(userInput, 10);

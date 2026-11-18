@@ -45,19 +45,7 @@ function updateBackground() {
     if(document.getElementById("daynight-css") !== null) {
         const backgroundStyle = document.getElementById("daynight-css");
         backgroundStyle.remove();
-    }
-    let daycss = `
-    body {
-        background: linear-gradient(to top, #87CEFA, #FFD700);
-        transition: background 2s ease-in-out;
-    }
-    `;
-    let nightcss = `
-    body {
-        background: linear-gradient(to top, #2C3E50, #34495E);
-        transition: background 2s ease-in-out;
-    }`;
-    
+    }    
     if (getIsDayTime()) {
         document.body.classList.add("daytime");
         document.body.classList.remove("nighttime");
